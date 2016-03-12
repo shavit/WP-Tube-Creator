@@ -1,0 +1,10 @@
+.DS_Store
+.env
+*.php
+readme.html
+wp-admin
+wp-includes
+wp-content/themes/*
+wp-content/uploads/*
+wp-content/plugins/*
+!wp-content/plugins/wp-tube-creator/*

@@ -22,7 +22,7 @@ Author URI:
  * 
  */ 
 function createTubeCreatorDashboard(){
-    echo 'Hello';    
+    require 'templates/uploader.php';
 }
 
 /**

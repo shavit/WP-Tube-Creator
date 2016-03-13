@@ -7,4 +7,4 @@ wp-includes
 wp-content/themes/*
 wp-content/uploads/*
 wp-content/plugins/akismet
-
+!wp-content/plugins/wp-tube-creator

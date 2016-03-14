@@ -6,3 +6,5 @@ wp-admin
 wp-includes
 wp-content/themes/*
 wp-content/uploads/*
+wp-content/plugins/*
+!wp-content/plugins/tube-creator

@@ -24,14 +24,22 @@ function wp_tube_creator_init() {
   register_post_type( 'wp_tube_creator_video',
     array(
       'labels' => array(
-        'name' => __( 'Videos' ),
-        'singular_name' => __( 'Video' )
+        'name' => __( 'Tube Videos' ),
+        'singular_name' => __( 'Tube Video' )
       ),
       'public' => true,
       'has_archive' => true,
     )
   );
   
+  add_theme_support( 'post-formats', array(
+		'aside',
+		'image',
+		'video',
+		'quote',
+		'link',
+		'wp_tube_creator_video',
+	) );
 }
 add_action( 'init', 'wp_tube_creator_init' );
 

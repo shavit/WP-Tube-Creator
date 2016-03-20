@@ -19,8 +19,14 @@
      
     if (isset($_POST['wpTubeCreatorForm'])){
         
-        $csvFileURL = $_POST['wpTubeCreatorForm']['videosFileURL'];
-        $fileContents = file_get_contents($csvFileURL);
+        if (isset($_POST['wpTubeCreatorForm']['videosFileURL'])){
+            $csvFileURL = $_POST['wpTubeCreatorForm']['videosFileURL'];
+            $fileContents = file_get_contents($csvFileURL);
+        }
+        // if isset($_POST['wpTubeCreatorForm']['videosFile'])){
+        //     $csvFileURL = $_POST['wpTubeCreatorForm']['videosFileURL'];
+        //     $fileContents = file_get_contents($csvFileURL);
+        // }
         
         // parse the csv file
         $lines = explode(PHP_EOL, $fileContents);
@@ -32,6 +38,15 @@
         echo '<pre>';
         print_r($csvArray[0]);
         echo '</pre>';
+        
+        // create post
+        foreach ($csvArray as $csvItem){
+            wp_insert_post(array(
+                'post_status' => 'publish',
+                'post_content' => $csvItem[0],
+                'post_title' => wp_strip_all_tags($csvItem[5]),
+                ));
+        }
     }
 ?>
 
@@ -42,6 +57,11 @@
             <label for="videosFileURL">Choose A File From URL:</label>
             <div class="control">
                 <input type="url" id="videosFileURL" name="wpTubeCreatorForm[videosFileURL]" />
+            </div>
+        <div class="control-group">
+            <label for="videosFile">Upload A File</label>
+            <div class="control">
+                <input type="file" id="videosFile" name="wpTubeCreatorForm[videosFile]" />
             </div>
         </div>
     </fieldset>

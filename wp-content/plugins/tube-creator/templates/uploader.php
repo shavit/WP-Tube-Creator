@@ -41,11 +41,24 @@
         
         // create post
         foreach ($csvArray as $csvItem){
-            wp_insert_post(array(
-                'post_status' => 'publish',
-                'post_content' => $csvItem[0],
-                'post_title' => wp_strip_all_tags($csvItem[5]),
-                ));
+            
+            // if therethe content is not empty
+            if (isset($csvItem[0])){
+                $res = wp_insert_post(array(
+                    'post_status' => 'publish',
+                    'post_type' => 'video',
+                    'post_content' => $csvItem[0],
+                    'post_title' => wp_strip_all_tags($csvItem[5]),
+                ), $wp_error);
+                
+                if (isset($wp_error)){
+                    // catch errors
+                    echo '<pre>';
+                    print_r($wp_error);
+                    echo '</pre>';
+                }
+            }
+            
         }
     }
 ?>
